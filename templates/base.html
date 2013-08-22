@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Новости российских университетов</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link href="{{ STATIC_URL }}css/bootstrap.css" rel="stylesheet">
+		<link href="{{ STATIC_URL }}css/bootstrap-responsive.css" rel="stylesheet">
+		<link href="{{ STATIC_URL }}css/style.css" rel="stylesheet">
+	</head>
+	<body>
+		<div class="container-fluid">
+			<div class="row-fluid">
+				<div class="span9 ">
+					<div class="header"><img src="{{ STATIC_URL }}img/header.png"></div>
+
+				</div>
+				<div class="span3">
+					<div class="num_rooms">
+						<h1>1(1)</h1>
+						<h2>19 февраля 2013</h2>
+					</div>
+				</div>
+			</div>
+			<div class="row-fluid ">
+				<div class="span12">
+					<div class="separator"></div>
+				</div>
+			</div>
+		</div>
+		<div class="container-fluid">
+			<div class="row-fluid navigation">
+				<div class="span12">
+					<nav class="navbar-inner">
+						 <div class="navbar">
+							<div class="navbar-inner">
+								<div class="container">
+									<button data-target=".nav-collapse" data-toggle="collapse" class="btn btn-navbar" type="button">
+										<span class="icon-bar"></span>
+										<span class="icon-bar"></span>
+										<span class="icon-bar"></span>
+									</button>
+									<div class="nav-collapse in collapse" style="height: auto;">
+										<ul class="nav">
+											<li><a href="#">На главную</a></li>
+											<li><a href="#about">Фотогалерея</a></li>
+											<li><a href="#contact">Контакты</a></li>
+											<li><a href="#contact">Архив</a></li>
+											<li><a href="#contact">О газете</a></li>
+										</ul>
+                                    </div><!--/.nav-collapse -->
+                                </div>
+                            </div>
+                        </div>
+					</nav>
+				</div>
+			</div>
+            {% block content %}{% endblock %}
+        </div>
+		<script src="http://code.jquery.com/jquery-latest.js"></script>
+		<script src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
+	</body>
+</html>
