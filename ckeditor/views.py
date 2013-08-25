@@ -99,6 +99,8 @@ def get_upload_filename(upload_name, user):
     upload_path = os.path.join(settings.CKEDITOR_UPLOAD_PATH, user_path, \
             date_path)
 
+   # upload_path = '/'.join(upload_path.split('\\'))
+
     # Make sure upload_path exists.
     if not os.path.exists(upload_path):
         os.makedirs(upload_path)
@@ -169,8 +171,8 @@ def get_image_browse_urls(user=None):
     images = []
     for filename in get_image_files(user=user):
         images.append({
-            'thumb': get_media_url(get_thumb_filename(filename)),
-            'src': get_media_url(filename)
+            'thumb': '/'.join(get_media_url(get_thumb_filename(filename)).split('\\')),
+            'src': '/'.join(get_media_url(filename).split('\\'))
         })
 
     return images

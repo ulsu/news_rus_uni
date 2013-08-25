@@ -33,25 +33,20 @@
 				</div>
 				<div class="span3">
 					<div class="current">
-						<div class="title_current_news">���������</div>
+						<div class="title_current_news">Актуально</div>
 						<div class="content_current_news">
+                            {% for a in actual %}
 							<div class="current_news">
-								<img src="img/small_img.png">
-								<h5 class="article_left_news"><a href="#">� ����  ������ ����  ����������!</a></h5>
-								<div class="data">2013-07-02</div>			
-								<p>2 ���� ����������� �������������� � ������� �������� ��������� ��������� ����������, ����������� � ������������ ����� (������, �����). 
-								</p>
+								<img src="{{ a.media_path }}">
+								<h5 class="article_left_news"><a href="#">{{ a.title }}</a></h5>
+								<div class="data">{{ a.publish|date:"d E Yг." }}</div>
+								<p>{{ a.body }}</p>
 							</div>
-							<div class="current_news">
-								<h5 class="article_left_news"><a href="#">� ����  ������ ����  ����������!</a></h5>
-								<div class="data">2013-07-02</div>			
-								<p>2 ���� ����������� �������������� � ������� �������� ��������� ��������� ����������, ����������� � ������������ ����� (������, �����). 
-								</p>
-							</div>
+                            {% endfor %}
 						</div>
 					</div>
 					<div class="bottom_news">
-						<div class="title_bottom_news">�������</div>
+						<div class="title_bottom_news">Новости</div>
 						<div class="content_bottom_news">
 							<div class="number_news">
 								<img src="img/small_img.png">
@@ -83,21 +78,21 @@
 			</div>
 			<div class="row-fluid">
 				<div class="span12">
-					<div class="footer_copyright">Copyright � ������� ���������� �������������. 2013 </div>
+					<div class="footer_copyright">Copyright © НОВОСТИ российских университетов. 2013</div>
 					<div class="footer_editor">
 						<div class="editor">
-							������� �������� <strong>������� ������</strong><br />
-							������������� ��������� <strong>����� ���������</strong><br />
-							������� <strong>����� ������������</strong><br />
-							����� 2000 ���.
+                            Главный редактор <strong>Дмитрий Хохлов</strong><br />
+                            Ответственный секретарь <strong>Ольга Николаева</strong><br />
+                            Верстка <strong>Лилия Багаутдинова</strong><br />
+                            Тираж 2000 экз.
 						</div>
 						<div class="info">
-							���������� - ������ ������� �����������.
-							����� ��������: 432049 �. ���������, ��. ��������,105.
-							���. 75-55-62. ����� �����������  �����: <a href="mailto:univernews@mail.ru">univernews@mail.ru</a>
-							�������������  � ����������� ���  �� ���77-53112 �� 7 ����� 2013 ����. ������ ����������� ������� �� ������� � ����� �����,�������������� ���������� � �������� ������������.
-							������ ���������� � ��� ����������������� ���������߻. �����: 433504, ����������� �������, �. ������������,
-							��. ��� ��������� �����, �. 107. ��������� � ������ 17.05 � 19.00.
+                            Учредитель — ХОХЛОВ Дмитрий Геннадьевич.
+							Адрес редакции: 432049 г. Ульяновск, ул. Аблукова,105.
+                            Тел. 75-55-62. Адрес электронной почты <a href="mailto:univernews@mail.ru">univernews@mail.ru</a>.
+                            Свидетельство о регистрации СМИ ПИ №ФС77-53112 от 7 марта 2013 года. Выдано Федеральной службой по надзору в сфере связи, информационных технологий и массовых коммуникаций.
+                            Газета отпечатана в ОАО «ДИМИТРОВГРАДСКАЯ ТИПОГРАФИЯ». Адрес: 433504, Ульяновская область, г. Димитровград,
+                            ул. Юнг Северного Флота, д. 107. Подписано в печать 17.05 в 19.00.
 						</div>
 					</div>
 				</div>

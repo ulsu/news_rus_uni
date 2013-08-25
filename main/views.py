@@ -8,10 +8,13 @@ from django.views.static import serve
 
 
 def index(request):
-    n = Newspaper.objects.filter(active=True).latest()
-    a = Article.objects.filter(number=n)
+    number = Newspaper.objects.filter(active=True).latest()
+    articles = Article.objects.filter(number=number)
+
+    actual = ActualInfo.objects.filter(display=True)
+
     t = loader.get_template("index.html")
-    c = RequestContext(request, {'number': n, 'articles': a})
+    c = RequestContext(request, {'number': number, 'articles': articles, 'actual':actual})
     return HttpResponse(t.render(c))
 
 def mediaserver(request, path):
