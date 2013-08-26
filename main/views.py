@@ -11,11 +11,22 @@ def index(request):
     number = Newspaper.objects.filter(active=True).latest()
     articles = Article.objects.filter(number=number)
 
-    actual = ActualInfo.objects.filter(display=True)
-
     t = loader.get_template("index.html")
-    c = RequestContext(request, {'number': number, 'articles': articles, 'actual':actual})
+    c = RequestContext(request, {'number': number, 'articles': articles})
+    return HttpResponse(t.render(c))
+
+def actual(request, id):
+    actual = ActualInfo.objects.get(id=id)
+
+    t = loader.get_template("simple_page.html")
+    c = RequestContext(request, {'item': actual})
     return HttpResponse(t.render(c))
 
 def mediaserver(request, path):
     return serve(request, path, settings.MEDIA_ROOT)
+
+def static_page(request, id):
+    page = StaticPage.objects.get(id=id)
+    t = loader.get_template("simple_page.html")
+    c = RequestContext(request, {'item': page})
+    return HttpResponse(t.render(c))

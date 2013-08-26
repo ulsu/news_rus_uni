@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block js %}
+    <script src="{{ STATIC_URL }}packages/ligthbox/js/lightbox-2.6.min.js"></script>
+{% endblock %}
+
+{% block css %}
+    <link href="{{ STATIC_URL }}packages/ligthbox/css/lightbox.css" rel="stylesheet" />
+    <style>
+        img{
+            max-width: 1000% !important;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div class="content">
+        <div class="home_news">
+            <img src="img/image_home_news.png">
+            <h3 class="article_header">Фотогалерея</h3>
+        </div>
+        <div style="clear:both;"></div>
+        {% for g in galleries %}
+            <div class="news">
+                <h4 class="article_news">{{ g.title }}</h4>
+                <div class="data">{{ g.date_added|date }}</div>
+                {% for p in g.photos.all %}
+                    <a href="{{ p.get_display_url }}" data-lightbox="{{ g.title_slug }}"><img src="{{ p.get_thumbnail_url }}" /></a>
+                {% endfor %}
+            </div>
+        {% endfor %}
+        <div style="clear:both;"></div>
+    </div>
+{% endblock %}

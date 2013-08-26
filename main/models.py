@@ -4,10 +4,14 @@ from django.contrib import admin
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.auth.models import User
 from ckeditor.fields import RichTextField
+from tinymce.models import HTMLField
 from datetime import datetime
 import os
 from django.utils.encoding import force_unicode
 import news_rus_uni.settings as SETTINGS
+from django.utils.safestring import mark_safe
+from django import forms
+from mce_filebrowser.admin import MCEFilebrowserAdmin
 
 
 class RenameFilesModel(models.Model):
@@ -120,7 +124,8 @@ admin.site.register(Article, ArticleAdmin)
 
 class ActualInfo(RenameFilesModel):
     title = models.CharField(max_length=255)
-    body = models.TextField()
+    intro = HTMLField()
+    body = HTMLField()
     publish = models.DateTimeField(default=datetime.now())
     display = models.BooleanField(default=True)
     picture = models.ImageField(upload_to='temp')
@@ -139,7 +144,24 @@ class ActualInfo(RenameFilesModel):
     def __unicode__(self):
         return self.title
 
-class ActualInfoAdmin(admin.ModelAdmin):
+    class Media:
+        js = ("/js/tiny_mce.js", "/js/textareas.js")
+
+class ActualInfoAdmin(MCEFilebrowserAdmin):
     list_display = ('title', 'publish',)
 
 admin.site.register(ActualInfo, ActualInfoAdmin)
+
+
+
+class StaticPage(models.Model):
+    title = models.CharField(max_length=255)
+    body = HTMLField()
+
+    def __unicode__(self):
+        return self.title
+
+class StaticPageAdmin(MCEFilebrowserAdmin):
+    list_display = ('title',)
+
+admin.site.register(StaticPage, StaticPageAdmin)
