@@ -1,4 +1,4 @@
-# Django settings for news_rus_uni project.
+from private_settings import YACAPTCHA_KEY
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -50,9 +50,9 @@ USE_TZ = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/var/www/example.com/media/"
-MEDIA_ROOT = 'C:/Users/Suzumiya Haruhi/PycharmProjects/news_rus_uni/media/'
+MEDIA_ROOT = 'C:/Users/Haruhi/PycharmProjects/news_rus_uni/media/'
 
-CKEDITOR_UPLOAD_PATH = 'C:/Users/Suzumiya Haruhi/PycharmProjects/news_rus_uni/media/uploads/'
+CKEDITOR_UPLOAD_PATH = 'C:/Users/Haruhi/PycharmProjects/news_rus_uni/media/uploads/'
 CKEDITOR_UPLOAD_PREFIX = '/media/uploads/'
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
@@ -64,7 +64,7 @@ MEDIA_URL = '/media/'
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/var/www/example.com/static/"
-STATIC_ROOT = 'C:/Users/Suzumiya Haruhi/PycharmProjects/news_rus_uni/static/'
+STATIC_ROOT = 'C:/Users/Haruhi/PycharmProjects/news_rus_uni/static/'
 
 # URL prefix for static files.
 # Example: "http://example.com/static/", "http://static.example.com/"
@@ -72,8 +72,8 @@ STATIC_URL = '/static/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
-    'C:/Users/Suzumiya Haruhi/PycharmProjects/news_rus_uni/staticfiles/',
-    'C:/Users/Suzumiya Haruhi/PycharmProjects/news_rus_uni/ckeditor/staticfiles/',
+    'C:/Users/Haruhi/PycharmProjects/news_rus_uni/staticfiles/',
+    'C:/Users/Haruhi/PycharmProjects/news_rus_uni/ckeditor/staticfiles/',
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
@@ -133,8 +133,6 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.admin',
-    # Uncomment the next line to enable admin documentation:
-    # 'django.contrib.admindocs',
     'main',
     'ckeditor',
     'tinymce',
@@ -143,6 +141,7 @@ INSTALLED_APPS = (
     'photologue',
     'south',
     'gallery',
+    'yacaptcha',
 )
 
 # A sample logging configuration. The only tangible logging
@@ -182,3 +181,13 @@ TINYMCE_DEFAULT_CONFIG = {
     'rows': 800,
     'file_browser_callback': 'mce_filebrowser'
 }
+
+
+EMAIL_HOST = '10.2.0.1'
+EMAIL_PORT = 25
+EMAIL_USE_TLS = False
+
+EMAIL_HOST_USER = 'webmaster@ulsu.ru'
+EMAIL_HOST_PASSWORD = ''
+
+DEFAULT_FROM_EMAIL = 'webmaster@ulsu.ru'

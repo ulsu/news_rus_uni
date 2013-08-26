@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="content">
+        <div class="home_news">
+            <img src="img/image_home_news.png">
+            <h3 class="article_header"><a href="#">{{ item.title }}</a></h3>
+            <div class="data">{{ item.date }}</div>
+            {{ item.body|safe }}
+        </div>
+        <div style="clear:both;"></div>
+        <h4>Форма обратной связи</h4>
+        <form action="/contacts/" method="POST" id="contacts_form">
+            {{ cform.as_p }}
+            <input type="submit" value="Отправить">
+        </form>
+    </div>
+{% endblock %}
