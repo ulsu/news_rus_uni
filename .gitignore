@@ -2,3 +2,8 @@
 .idea
 *.db
 media
+deploy
+news_rus_uni/private_settings.py
+news_rus_uni/settings.py
+news_rus_uni/local_settings.py
+news_rus_uni/wsgi.py

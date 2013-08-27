@@ -1,4 +1,5 @@
-from private_settings import YACAPTCHA_KEY
+from private_settings import YACAPTCHA_KEY, SECRET_KEY
+from local_settings import DATABASES, PROJECT_PATH
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -9,17 +10,6 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'nru.db',                      # Or path to database file if using sqlite3.
-        # The following settings are not used with sqlite3:
-        'USER': '',
-        'PASSWORD': '',
-        'HOST': '',                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
-        'PORT': '',                      # Set to empty string for default.
-    }
-}
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
@@ -50,21 +40,23 @@ USE_TZ = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/var/www/example.com/media/"
-MEDIA_ROOT = 'C:/Users/Haruhi/PycharmProjects/news_rus_uni/media/'
-
-CKEDITOR_UPLOAD_PATH = 'C:/Users/Haruhi/PycharmProjects/news_rus_uni/media/uploads/'
-CKEDITOR_UPLOAD_PREFIX = '/media/uploads/'
+MEDIA_ROOT = PROJECT_PATH + '/media/'
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
 # Examples: "http://example.com/media/", "http://media.example.com/"
 MEDIA_URL = '/media/'
 
+
+CKEDITOR_UPLOAD_PATH = MEDIA_ROOT + 'uploads/'
+CKEDITOR_UPLOAD_PREFIX = MEDIA_URL + 'uploads/'
+
+
 # Absolute path to the directory static files should be collected to.
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/var/www/example.com/static/"
-STATIC_ROOT = 'C:/Users/Haruhi/PycharmProjects/news_rus_uni/static/'
+STATIC_ROOT = PROJECT_PATH + '/static/'
 
 # URL prefix for static files.
 # Example: "http://example.com/static/", "http://static.example.com/"
@@ -72,8 +64,8 @@ STATIC_URL = '/static/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
-    'C:/Users/Haruhi/PycharmProjects/news_rus_uni/staticfiles/',
-    'C:/Users/Haruhi/PycharmProjects/news_rus_uni/ckeditor/staticfiles/',
+    PROJECT_PATH + '/staticfiles/',
+    PROJECT_PATH + '/ckeditor/staticfiles/',
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
@@ -86,9 +78,6 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 #    'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
-
-# Make this unique, and don't share it with anybody.
-SECRET_KEY = 'rrsz%3q0fz$hq$7cy^ybexn5tz8=8)u91yt+6=_oo%2)1a7mbz'
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
@@ -115,6 +104,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.static",
     "django.contrib.messages.context_processors.messages",
     "main.context_processors.actual",
+    "main.context_processors.number",
 )
 
 ROOT_URLCONF = 'news_rus_uni.urls'
