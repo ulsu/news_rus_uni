@@ -2,30 +2,19 @@
 
 {% block content %}
     <div class="content">
-        <div class="home_news">
-            <img src="img/image_home_news.png">
-            <h3 class="article_header"><a href="#">{{ number.title }}</a></h3>
-            <div class="data">{{ number.date }}</div>
-            {{ number.intro|safe }}
-        </div>
-        <div style="clear:both;"></div>
         {% for a in articles %}
-            <div class="news">
-                <h4 class="article_news"><a href="#">{{ a.title }}</a></h4>
-                <div class="data">2013-07-02</div>
-                {{ a.body|safe }}
-            </div>
+            {% if forloop.counter == 1 %}
+                <div class="news">
+                    <h3 class="article_header"><a href="/article/{{ a.id }}/">{{ a.title }}</a></h3>
+                    {{ a.intro|safe }}
+                </div>
+            {% else %}
+                <div class="news">
+                    <h4 class="article_news"><a href="/article/{{ a.id }}/">{{ a.title }}</a></h4>
+                    {{ a.intro|safe }}
+                </div>
+            {% endif %}
         {% endfor %}
         <div style="clear:both;"></div>
-        <div class="pagination">
-            <ul>
-                <li><a href="#"><<</a></li>
-                <li><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">>></a></li>
-            </ul>
-        </div>
     </div>
 {% endblock %}

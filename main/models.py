@@ -12,6 +12,7 @@ import news_rus_uni.settings as SETTINGS
 from django.utils.safestring import mark_safe
 from django import forms
 from mce_filebrowser.admin import MCEFilebrowserAdmin
+from photologue.models import Gallery
 
 
 class RenameFilesModel(models.Model):
@@ -95,7 +96,7 @@ class Newspaper(models.Model):
     date = models.DateTimeField(default=datetime.now())
 
     class Meta:
-      get_latest_by = 'date'
+        get_latest_by = 'date'
 
     def __unicode__(self):
         return self.title
@@ -108,10 +109,12 @@ admin.site.register(Newspaper, NewspaperAdmin)
 
 class Article(models.Model):
     title = models.CharField(max_length=255)
+    intro = RichTextField()
     body = RichTextField()
     order = models.IntegerField()
     author = models.CharField(max_length=255)
     number = models.ForeignKey(Newspaper)
+    gallery = models.ForeignKey(Gallery, null=True, blank=True)
 
     def __unicode__(self):
         return '%s (%s)' % (self.title, self.number.title)

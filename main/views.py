@@ -12,7 +12,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 def index(request):
     number = Newspaper.objects.filter(active=True).latest()
-    articles = Article.objects.filter(number=number)
+    articles = Article.objects.filter(number=number).order_by('order')
 
     t = loader.get_template("index.html")
     c = RequestContext(request, {'number': number, 'articles': articles})
@@ -23,6 +23,13 @@ def actual(request, id):
 
     t = loader.get_template("simple_page.html")
     c = RequestContext(request, {'item': actual})
+    return HttpResponse(t.render(c))
+
+def article(request, id):
+    article = Article.objects.get(id=id)
+
+    t = loader.get_template("article.html")
+    c = RequestContext(request, {'article': article})
     return HttpResponse(t.render(c))
 
 def mediaserver(request, path):
