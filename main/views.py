@@ -18,28 +18,52 @@ def index(request):
     c = RequestContext(request, {'number': number, 'articles': articles})
     return HttpResponse(t.render(c))
 
+
 def actual(request, id):
     actual = ActualInfo.objects.get(id=id)
-
     t = loader.get_template("simple_page.html")
     c = RequestContext(request, {'item': actual})
     return HttpResponse(t.render(c))
 
+
+def news(request, id):
+    novelty = NewsInfo.objects.get(id=id)
+    t = loader.get_template("simple_page.html")
+    c = RequestContext(request, {'item': novelty})
+    return HttpResponse(t.render(c))
+
+
+def actual_archive(request):
+    actual = ActualInfo.objects.all()
+    t = loader.get_template("actual_archive.html")
+    c = RequestContext(request, {'actual': actual})
+    return HttpResponse(t.render(c))
+
+
+def news_archive(request):
+    news = NewsInfo.objects.all()
+    t = loader.get_template("news_archive.html")
+    c = RequestContext(request, {'news': news})
+    return HttpResponse(t.render(c))
+
+
 def article(request, id):
     article = Article.objects.get(id=id)
-
     t = loader.get_template("article.html")
     c = RequestContext(request, {'article': article})
     return HttpResponse(t.render(c))
 
+
 def mediaserver(request, path):
     return serve(request, path, settings.MEDIA_ROOT)
+
 
 def static_page(request, id):
     page = StaticPage.objects.get(id=id)
     t = loader.get_template("simple_page.html")
     c = RequestContext(request, {'item': page})
     return HttpResponse(t.render(c))
+
 
 @csrf_exempt
 def contacts(request):
@@ -64,3 +88,11 @@ def contacts(request):
         t = loader.get_template("contacts_form.html")
         c = RequestContext(request, {'item': page, 'cform': cform})
         return HttpResponse(t.render(c))
+
+
+def archive(request):
+    numbers = Newspaper.objects.filter(active=True)
+
+    t = loader.get_template("archive.html")
+    c = RequestContext(request, {'numbers': numbers})
+    return HttpResponse(t.render(c))

@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="content">
+        <div class="news">
+            <h3 class="article_header">Новости</h3>
+        </div>
+        {% for n in news %}
+            <div class="current_news">
+                <img width="75" src="{{ n.media_path }}">
+                <h5 class="article_left_news"><a href="/news/{{ n.id }}/">{{ n.title }}</a></h5>
+                <div class="data">{{ n.publish|date:"d E Yг." }}</div>
+                <p>{{ n.intro|safe }}</p>
+            </div>
+        {% endfor %}
+
+        <div style="clear:both;"></div>
+    </div>
+{% endblock %}

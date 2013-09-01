@@ -125,7 +125,7 @@ class ArticleAdmin(admin.ModelAdmin):
 admin.site.register(Article, ArticleAdmin)
 
 
-class ActualInfo(RenameFilesModel):
+class SideInfo(RenameFilesModel):
     title = models.CharField(max_length=255)
     intro = HTMLField()
     body = HTMLField()
@@ -137,7 +137,7 @@ class ActualInfo(RenameFilesModel):
         return SETTINGS.MEDIA_URL + self.picture.name
 
     RENAME_FILES = {
-        'picture': {'dest': 'actual_thumbs', 'keep_ext': True}
+        'picture': {'dest': '', 'keep_ext': True}
     }
 
     def picture_extension(self):
@@ -147,13 +147,32 @@ class ActualInfo(RenameFilesModel):
     def __unicode__(self):
         return self.title
 
+    class Meta:
+        abstract = True
+
     class Media:
         js = ("/js/tiny_mce.js", "/js/textareas.js")
 
+
+class ActualInfo(SideInfo):
+    RENAME_FILES = {
+        'picture': {'dest': 'actual_thumbs', 'keep_ext': True}
+    }
+
+
 class ActualInfoAdmin(MCEFilebrowserAdmin):
     list_display = ('title', 'publish',)
-
 admin.site.register(ActualInfo, ActualInfoAdmin)
+
+
+class NewsInfo(SideInfo):
+    RENAME_FILES = {
+        'picture': {'dest': 'news_thumbs', 'keep_ext': True}
+    }
+
+class NewsInfoAdmin(MCEFilebrowserAdmin):
+    list_display = ('title', 'publish',)
+admin.site.register(NewsInfo, NewsInfoAdmin)
 
 
 

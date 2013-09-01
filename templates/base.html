@@ -16,8 +16,8 @@
         </div>
         <div class="span3">
             <div class="num_rooms">
-                <h1>{{ number.title }}</h1>
-                <h2>{{ number.date|date:"d E Y" }}</h2>
+                <h1>{{ header_number.title }}</h1>
+                <h2>{{ header_number.date|date:"d E Y" }}</h2>
             </div>
         </div>
     </div>
@@ -62,34 +62,31 @@
             <div class="current">
                 <div class="title_current_news">Актуально</div>
                 <div class="content_current_news">
-                    {% for a in actual %}
+                    {% for a in active_side_actual %}
                         <div class="current_news">
-                            <img src="{{ a.media_path }}">
+                            <img width="75" src="{{ a.media_path }}">
                             <h5 class="article_left_news"><a href="/actual/{{ a.id }}/">{{ a.title }}</a></h5>
                             <div class="data">{{ a.publish|date:"d E Yг." }}</div>
                             <p>{{ a.intro|safe }}</p>
                         </div>
                     {% endfor %}
-                    <p style="text-align:right; margin:0;"><a href="#">Архив</a></p>
+                    <p style="text-align:right; margin:0;"><a href="/actual/archive/">Архив</a></p>
 
                 </div>
             </div>
             <div class="bottom_news">
                 <div class="title_bottom_news">Новости</div>
                 <div class="content_bottom_news">
-                    <div class="number_news">
-                        <img src="img/small_img.png">
-                        <h5 class="article_left_news"><a href="#">? ????  ?????? ????  ??????????!</a></h5>
-                        <div class="data">2013-07-02</div>
-                        <p>2 ???? ??????????? ?????????????? ? ??????? ???????? ????????? ????????? ??????????, ??????????? ? ???????????? ????? (??????, ?????).
-                        </p>
-                    </div>
-                    <div class="number_news">
-                        <h5 class="article_left_news"><a href="#">? ????  ?????? ????  ??????????!</a></h5>
-                        <div class="data">2013-07-02</div>
-                        <p>2 ???? ??????????? ?????????????? ? ??????? ???????? ????????? ????????? ??????????, ??????????? ? ???????????? ????? (??????, ?????).
-                        </p>
-                    </div>
+                    {% for n in active_side_news %}
+                        <div class="bottom_news">
+                            <img width="75" src="{{ n.media_path }}">
+                            <h5 class="article_left_news"><a href="/news/{{ n.id }}/">{{ n.title }}</a></h5>
+                            <div class="data">{{ n.publish|date:"d E Yг." }}</div>
+                            <p>{{ n.intro|safe }}</p>
+                        </div>
+                    {% endfor %}
+                    <p style="text-align:right; margin:0;"><a href="/news/archive/">Архив</a></p>
+
                 </div>
             </div>
         </div>
@@ -112,7 +109,7 @@
     </div>
     <div class="row-fluid">
         <div class="span12">
-            <div class="footer_copyright">Copyright © НОВОСТИ российских университетов, 2013</div>
+            <div class="footer_copyright">Copyright © НОВОСТИ российских университетов, {% now "Y" %}</div>
             <div class="footer_editor">
                 <div class="editor">
                     Главный редактор: <strong>Дмитрий Хохлов</strong><br />

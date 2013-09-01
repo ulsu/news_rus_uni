@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="content">
+        <div class="news">
+            <h3 class="article_header">Архив</h3>
+        </div>
+        <table style="width:100%;">
+            {% for n in numbers %}
+            <tr>
+                <td>Новости Российских Университетов {{ n.title }} от {{ n.date|date:"d E Y" }}</td>
+                <td><a href="{{ n.number.url }}">Скачать номер</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <div style="clear:both;"></div>
+    </div>
+{% endblock %}
