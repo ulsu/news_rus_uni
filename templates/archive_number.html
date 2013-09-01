@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="content">
+        <div class="news">
+            <h3 class="article_header">Новости Российских Университетов от {{ number.date|date:"d E Y" }}</h3>
+            {{ a.intro|safe }}
+        </div>
+        {% for a in articles %}
+                <div class="news">
+                    <h4 class="article_news"><a href="/article/{{ a.id }}/">{{ a.title }}</a></h4>
+                    {{ a.intro|safe }}
+                </div>
+        {% endfor %}
+        <div style="clear:both;"></div>
+    </div>
+{% endblock %}

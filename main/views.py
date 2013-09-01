@@ -96,3 +96,12 @@ def archive(request):
     t = loader.get_template("archive.html")
     c = RequestContext(request, {'numbers': numbers})
     return HttpResponse(t.render(c))
+
+
+def archive_number(request, id):
+    number = Newspaper.objects.filter(active=True).latest()
+    articles = Article.objects.filter(number=number).order_by('order')
+
+    t = loader.get_template("archive_number.html")
+    c = RequestContext(request, {'number': number, 'articles': articles})
+    return HttpResponse(t.render(c))

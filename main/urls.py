@@ -16,4 +16,5 @@ urlpatterns = staticfiles_urlpatterns() + patterns('',
     url(r'^contacts/$', contacts),
     url(r'^partners/$', static_page, {'id': '3'}),
     url(r'^archive/$', archive),
+    url(r'^archive/(?P<id>\d{1,})/$', archive_number),
 )

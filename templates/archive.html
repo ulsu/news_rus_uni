@@ -8,7 +8,7 @@
         <table style="width:100%;">
             {% for n in numbers %}
             <tr>
-                <td>Новости Российских Университетов {{ n.title }} от {{ n.date|date:"d E Y" }}</td>
+                <td><a href="/archive/{{ n.id }}/">Новости Российских Университетов {{ n.title }} от {{ n.date|date:"d E Y" }}</a></td>
                 <td><a href="{{ n.number.url }}">Скачать номер</a></td>
             </tr>
             {% endfor %}
