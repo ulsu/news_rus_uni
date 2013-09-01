@@ -1,8 +1,8 @@
-from main.models import ActualInfo
+from main.models import ActualInfo, Newspaper
 
 
 def actual(request):
     return {'actual': ActualInfo.objects.filter(display=True)}
 
 def number(request):
-    return {'number': ActualInfo.objects.filter(display=True)}
+    return {'number': Newspaper.objects.latest('date')}
