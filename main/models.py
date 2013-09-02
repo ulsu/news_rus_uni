@@ -131,6 +131,15 @@ class SideInfo(RenameFilesModel):
     body = HTMLField()
     publish = models.DateTimeField(default=datetime.now())
     display = models.BooleanField(default=True)
+
+    def __unicode__(self):
+        return self.title
+
+    class Meta:
+        abstract = True
+
+
+class ActualInfo(SideInfo):
     picture = models.ImageField(upload_to='temp')
 
     def media_path(self):
@@ -144,20 +153,8 @@ class SideInfo(RenameFilesModel):
         name, extension = os.path.splitext(self.picture.name)
         return extension
 
-    def __unicode__(self):
-        return self.title
-
-    class Meta:
-        abstract = True
-
     class Media:
         js = ("/js/tiny_mce.js", "/js/textareas.js")
-
-
-class ActualInfo(SideInfo):
-    RENAME_FILES = {
-        'picture': {'dest': 'actual_thumbs', 'keep_ext': True}
-    }
 
 
 class ActualInfoAdmin(MCEFilebrowserAdmin):
@@ -166,9 +163,7 @@ admin.site.register(ActualInfo, ActualInfoAdmin)
 
 
 class NewsInfo(SideInfo):
-    RENAME_FILES = {
-        'picture': {'dest': 'news_thumbs', 'keep_ext': True}
-    }
+    pass
 
 class NewsInfoAdmin(MCEFilebrowserAdmin):
     list_display = ('title', 'publish',)
